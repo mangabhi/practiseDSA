@@ -82,6 +82,31 @@ class BST:
         right=self.sum_node(root.right)
         return root.val + left + right
 
+    def sameTree(self,p,q):
+        if p is None and q is None:
+            return True
+        if p is None or q is None:
+            return False
+        return (p.val == q.val and self.sameTree(p.left,q.left) and self.sameTree(p.right,q.right))
+
+    def invert_tree(self,root):
+        if root is None:
+            return 
+        root.left,root.right=root.right,root.left
+        self.invert_tree(root.left)
+        self.invert_tree(root.right)
+        return root
+
+    def symmetric(self,root):
+        def dfs(root1,root2):
+            if root1 is None and root2 is None:
+                return True
+            if not root1 or not root2 or root1.val !=root2.val:
+                return False
+            return dfs(root1.left,root2.right) and dfs(root1.right,root2.left) 
+        return dfs(root.left,root.right)
+
+
     def searchBT(self,root,target):
         if root is None:
             return False
@@ -104,7 +129,6 @@ class BST:
                 q.append(curr.right)
             depth +=1
         return depth
-        
         
         
 
