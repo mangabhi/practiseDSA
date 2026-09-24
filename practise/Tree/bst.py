@@ -56,7 +56,23 @@ class BST:
             root=root.right
         return root.val
 
-    def kth_smallest(self,root):return ;
+    def kth_smallest(self,root,k):
+        n=0
+        stack=[]
+        curr=root 
+
+        while curr and stack:
+            while curr:
+                stack.append(curr)
+                curr=curr.left
+            curr=stack.pop()
+            n+=1
+            if n==k:
+                return curr.val
+            curr=curr.right
+            
+
+
         
         
         
